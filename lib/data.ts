@@ -41,7 +41,7 @@ export const players: Player[] = [
   // Aazib's Team
   { id: "p1",  teamId: "aazib", name: "Aazib",     number: 29, position: "C", goals: 9, assists: 1, gamesPlayed: 7, photo: "/aazib-profile-pic.jpeg" },
   { id: "p12", teamId: "aazib", name: "Ali",        number: 71, position: "D", goals: 4, assists: 4, gamesPlayed: 7, photo: "/ali-profile-pic.jpeg" },
-  { id: "p8",  teamId: "aazib", name: "Faheem",     number: 59, position: "D", goals: 1, assists: 2, gamesPlayed: 7 },
+  { id: "p8",  teamId: "aazib", name: "Faheem",     number: 59, position: "D", goals: 1, assists: 2, gamesPlayed: 7, photo: "/faheem-profile-pic.jpeg" },
   { id: "p9",  teamId: "aazib", name: "Anas",       number: 19, position: "D", goals: 0, assists: 1, gamesPlayed: 7 },
   { id: "p2",  teamId: "aazib", name: "Labib",      number: 66, position: "C", goals: 2, assists: 3, gamesPlayed: 7 },
 
