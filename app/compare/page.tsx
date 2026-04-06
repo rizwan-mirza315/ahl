@@ -2,6 +2,7 @@
 import { players, teams, getTeamById } from "@/lib/data";
 import TeamBadge from "@/components/TeamBadge";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 type Player = (typeof players)[number];
@@ -114,7 +115,23 @@ export default function ComparePage() {
     <div className="space-y-8">
       <div className="border-b border-[#e5e5e5] pb-5">
         <p className="text-[#c8102e] text-xs font-bold tracking-[0.2em] uppercase mb-1">2025–26 Season</p>
-        <h1 className="text-3xl sm:text-4xl font-black text-black tracking-tight">Head to Head</h1>
+        <h1 className="text-3xl sm:text-4xl font-black text-black tracking-tight">Teams</h1>
+      </div>
+
+      {/* Tabs */}
+      <div className="flex gap-1 border-b border-[#e5e5e5]">
+        <Link
+          href="/teams/dc"
+          className="px-4 py-2.5 text-sm font-bold border-b-2 border-transparent text-[#999] hover:text-black transition-colors -mb-px"
+        >
+          Roster
+        </Link>
+        <Link
+          href="/compare"
+          className="px-4 py-2.5 text-sm font-bold border-b-2 border-black text-black -mb-px"
+        >
+          Head to Head
+        </Link>
       </div>
 
       {/* Selectors */}

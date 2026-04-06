@@ -48,8 +48,21 @@ export default function TeamPage({ params }: { params: Promise<{ id: string }> }
         ))}
       </div>
 
-      {/* Roster label */}
-      <h2 className="text-[11px] font-bold text-[#999] tracking-[0.18em] uppercase -mb-5">Roster</h2>
+      {/* Tabs */}
+      <div className="flex gap-1 border-b border-[#e5e5e5]">
+        <Link
+          href={`/teams/${id}`}
+          className="px-4 py-2.5 text-sm font-bold border-b-2 border-black text-black -mb-px"
+        >
+          Roster
+        </Link>
+        <Link
+          href="/compare"
+          className="px-4 py-2.5 text-sm font-bold border-b-2 border-transparent text-[#999] hover:text-black transition-colors -mb-px"
+        >
+          Head to Head
+        </Link>
+      </div>
 
       {/* Player cards grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">

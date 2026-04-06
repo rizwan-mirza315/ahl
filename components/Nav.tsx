@@ -9,7 +9,6 @@ const links = [
   { href: "/schedule", label: "SCHEDULE" },
   { href: "/stats", label: "STATS" },
   { href: "/teams/dc", label: "TEAMS" },
-  { href: "/compare", label: "H2H" },
 ];
 
 export default function Nav() {
@@ -51,8 +50,7 @@ export default function Nav() {
               link.label === "STANDINGS" ? pathname === "/standings" :
               link.label === "STATS"     ? pathname === "/stats" :
               link.label === "SCHEDULE"  ? pathname === "/schedule" :
-              link.label === "TEAMS"     ? pathname.startsWith("/teams") :
-              link.label === "H2H"       ? pathname === "/compare" :
+              link.label === "TEAMS"     ? pathname.startsWith("/teams") || pathname === "/compare" :
               false;
             return (
               <Link
