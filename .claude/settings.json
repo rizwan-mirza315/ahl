@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(magick --version)",
+      "Bash(convert --version)",
+      "Bash(node -e \"require\\('sharp'\\)\")",
+      "Bash(node -e ':*)"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\14039\\.vscode\\web-dev\\ahl",
+      "c:\\Users\\14039\\.vscode\\web-dev\\ahl\\app"
+    ]
+  }
+}
