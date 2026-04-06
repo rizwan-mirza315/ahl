@@ -31,7 +31,7 @@ export type Game = {
 };
 
 export const teams: Team[] = [
-  { id: "dc",    name: "DC's Team",    abbreviation: "DC",  color: "#003E7E", secondaryColor: "#6699CC", logo: "/team-dc.png"    },
+  { id: "dc",    name: "DC's Team",    abbreviation: "DC",  color: "#C8102E", secondaryColor: "#F4B942", logo: "/dc-team.jpeg"    },
   { id: "aazib", name: "Aazib's Team", abbreviation: "AAZ", color: "#1A6B3C", secondaryColor: "#4CAF76", logo: "/aazib-team.jfif" },
   { id: "mohud", name: "Mohud's Team", abbreviation: "MOU", color: "#041E42", secondaryColor: "#FF4C00", logo: "/team-mo.png"      },
 ];
