@@ -134,3 +134,22 @@ export function getTopScorers(limit = 10): Player[] {
     .sort((a, b) => (b.goals + b.assists) - (a.goals + a.assists))
     .slice(0, limit);
 }
+
+export function getOverall(player: Player): number {
+  const skaters = players.filter((p) => p.position !== "G" && p.gamesPlayed > 0);
+
+  const ppg = (p: Player) => (p.goals + p.assists) / p.gamesPlayed;
+  const gpg = (p: Player) => p.goals / p.gamesPlayed;
+  const apg = (p: Player) => p.assists / p.gamesPlayed;
+
+  const maxPpg = Math.max(...skaters.map(ppg));
+  const maxGpg = Math.max(...skaters.map(gpg));
+  const maxApg = Math.max(...skaters.map(apg));
+
+  const score =
+    (ppg(player) / maxPpg) * 0.50 +
+    (gpg(player) / maxGpg) * 0.30 +
+    (maxApg > 0 ? (apg(player) / maxApg) * 0.20 : 0);
+
+  return Math.min(99, Math.round(50 + score * 49));
+}

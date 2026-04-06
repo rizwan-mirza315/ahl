@@ -1,5 +1,5 @@
 "use client";
-import { players, teams, getTeamById } from "@/lib/data";
+import { players, teams, getTeamById, getOverall } from "@/lib/data";
 import TeamBadge from "@/components/TeamBadge";
 import Image from "next/image";
 import Link from "next/link";
@@ -97,6 +97,7 @@ function PlayerSelector({
 }
 
 const STATS = [
+  { key: "ovr",         label: "OVR" },
   { key: "gamesPlayed", label: "GP" },
   { key: "goals",       label: "G" },
   { key: "assists",     label: "A" },
@@ -104,6 +105,7 @@ const STATS = [
 ] as const;
 
 function statValue(p: Player, key: typeof STATS[number]["key"]) {
+  if (key === "ovr") return getOverall(p);
   if (key === "pts") return p.goals + p.assists;
   return p[key];
 }
@@ -160,6 +162,9 @@ export default function ComparePage() {
                   {teamA && <TeamBadge team={teamA} size={16} />}
                   <span className="text-[#999] text-xs">{teamA?.abbreviation}</span>
                 </div>
+                <div className="mt-2 inline-block bg-black text-white text-xs font-black px-2 py-0.5 rounded">
+                  {getOverall(playerA)} OVR
+                </div>
               </div>
             </div>
 
@@ -182,6 +187,9 @@ export default function ComparePage() {
                 <div className="flex items-center justify-center gap-1 mt-1">
                   {teamB && <TeamBadge team={teamB} size={16} />}
                   <span className="text-[#999] text-xs">{teamB?.abbreviation}</span>
+                </div>
+                <div className="mt-2 inline-block bg-black text-white text-xs font-black px-2 py-0.5 rounded">
+                  {getOverall(playerB)} OVR
                 </div>
               </div>
             </div>
