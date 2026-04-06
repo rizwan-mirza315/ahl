@@ -21,7 +21,7 @@ export default function Nav() {
         {/* Logo + league name */}
         <Link href="/" className="flex items-center gap-3 flex-shrink-0" onClick={() => setOpen(false)}>
           <Image src="/ahl-logo-v2.png" alt="AHL" width={80} height={80} />
-          <span className="text-white text-[28px] font-black tracking-tight leading-none italic">AHL</span>
+          <span className="text-white text-[16px] sm:text-[22px] font-black tracking-tight leading-none italic">Ahmadiyya Hockey League</span>
         </Link>
 
         {/* Hamburger on the right */}
