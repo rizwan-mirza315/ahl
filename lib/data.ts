@@ -39,7 +39,7 @@ export const teams: Team[] = [
 
 export const players: Player[] = [
   // Aazib's Team
-  { id: "p1",  teamId: "aazib", name: "Aazib",     number: 10, position: "C", goals: 9, assists: 1, gamesPlayed: 7 },
+  { id: "p1",  teamId: "aazib", name: "Aazib",     number: 10, position: "C", goals: 9, assists: 1, gamesPlayed: 7, photo: "/aazib-profile-pic.jpeg" },
   { id: "p2",  teamId: "aazib", name: "Labib",     number: 17, position: "C", goals: 2, assists: 3, gamesPlayed: 7 },
   { id: "p3",  teamId: "aazib", name: "Mutaal",    number: 5,  position: "C", goals: 4, assists: 1, gamesPlayed: 7 },
   { id: "p4",  teamId: "aazib", name: "Arib",      number: 21, position: "C", goals: 0, assists: 1, gamesPlayed: 7 },
@@ -54,7 +54,7 @@ export const players: Player[] = [
 
   // Mohud's Team
   { id: "p11", teamId: "mohud", name: "Mohud",     number: 7,  position: "C", goals: 4, assists: 4, gamesPlayed: 6 },
-  { id: "p12", teamId: "mohud", name: "Ali",       number: 4,  position: "D", goals: 4, assists: 4, gamesPlayed: 7 },
+  { id: "p12", teamId: "mohud", name: "Ali",       number: 4,  position: "D", goals: 4, assists: 4, gamesPlayed: 7, photo: "/ali-profile-pic.jpeg" },
   { id: "p13", teamId: "mohud", name: "Hassan",    number: 13, position: "D", goals: 3, assists: 4, gamesPlayed: 7 },
   { id: "p14", teamId: "mohud", name: "Ac",        number: 9,  position: "C", goals: 3, assists: 1, gamesPlayed: 7 },
 ];
