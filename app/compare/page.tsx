@@ -16,78 +16,82 @@ function PlayerSelector({
   selected: Player | null;
   onSelect: (p: Player | null) => void;
 }) {
-  const [teamFilter, setTeamFilter] = useState("");
+  const [teamId, setTeamId] = useState("");
 
-  const filtered = teamFilter
-    ? players.filter((p) => p.teamId === teamFilter && p.position !== "G")
-    : players.filter((p) => p.position !== "G");
+  const teamPlayers = teamId
+    ? players.filter((p) => p.teamId === teamId && p.position !== "G")
+    : [];
+
+  function handleTeamChange(id: string) {
+    setTeamId(id);
+    onSelect(null);
+  }
+
+  const team = teamId ? getTeamById(teamId) : null;
 
   return (
-    <div className="bg-white border border-[#e5e5e5] rounded-xl p-5 space-y-4 flex-1">
+    <div className="flex-1 space-y-3">
       <p className="text-[10px] font-bold text-[#999] tracking-[0.18em] uppercase">{label}</p>
 
-      {/* Team filter */}
-      <div className="flex flex-wrap gap-2">
-        <button
-          onClick={() => { setTeamFilter(""); onSelect(null); }}
-          className={`text-xs px-3 py-1.5 rounded-full border font-bold transition-all ${
-            !teamFilter ? "border-[#c8102e] text-[#c8102e] bg-red-50" : "border-[#e5e5e5] text-[#666] hover:border-[#aaa]"
-          }`}
+      {/* Team dropdown */}
+      <div className="relative">
+        <select
+          value={teamId}
+          onChange={(e) => handleTeamChange(e.target.value)}
+          className="w-full appearance-none bg-white border border-[#e5e5e5] rounded-xl px-4 py-3 pr-10 text-sm font-bold text-black focus:outline-none focus:border-[#aaa] cursor-pointer"
         >
-          All
-        </button>
-        {teams.map((t) => (
-          <button
-            key={t.id}
-            onClick={() => { setTeamFilter(t.id); onSelect(null); }}
-            className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full border font-bold transition-all ${
-              teamFilter === t.id ? "border-[#c8102e] text-[#c8102e] bg-red-50" : "border-[#e5e5e5] text-[#666] hover:border-[#aaa]"
-            }`}
-          >
-            <span className="w-2 h-2 rounded-full" style={{ backgroundColor: t.color }} />
-            {t.abbreviation}
-          </button>
-        ))}
+          <option value="">Select a team...</option>
+          {teams.map((t) => (
+            <option key={t.id} value={t.id}>{t.name}</option>
+          ))}
+        </select>
+        <svg className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[#999]" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+          <path d="M6 9l6 6 6-6" />
+        </svg>
       </div>
 
-      {/* Player list */}
-      <div className="space-y-1">
-        {filtered.map((p) => {
-          const team = getTeamById(p.teamId);
-          const isSelected = selected?.id === p.id;
-          return (
-            <button
-              key={p.id}
-              onClick={() => onSelect(isSelected ? null : p)}
-              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-all ${
-                isSelected
-                  ? "bg-black text-white"
-                  : "hover:bg-[#f5f5f5] text-black"
-              }`}
-            >
-              {p.photo ? (
-                <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 border border-[#e5e5e5]">
-                  <Image src={p.photo} alt={p.name} width={32} height={32} className="object-cover object-top w-full h-full" unoptimized />
-                </div>
-              ) : (
-                <div
-                  className="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs font-black"
-                  style={{ backgroundColor: team?.color ?? "#555" }}
-                >
-                  {p.name[0]}
-                </div>
-              )}
-              <div className="flex-1 min-w-0">
-                <p className={`font-bold text-sm truncate ${isSelected ? "text-white" : "text-black"}`}>{p.name}</p>
-                <p className={`text-xs ${isSelected ? "text-white/60" : "text-[#999]"}`}>{team?.abbreviation} · {p.position}</p>
-              </div>
-              <span className={`text-xs font-black ${isSelected ? "text-white" : "text-[#bbb]"}`}>
-                #{p.number}
-              </span>
-            </button>
-          );
-        })}
+      {/* Player dropdown */}
+      <div className="relative">
+        <select
+          value={selected?.id ?? ""}
+          onChange={(e) => {
+            const p = players.find((pl) => pl.id === e.target.value) ?? null;
+            onSelect(p);
+          }}
+          disabled={!teamId}
+          className="w-full appearance-none bg-white border border-[#e5e5e5] rounded-xl px-4 py-3 pr-10 text-sm font-bold text-black focus:outline-none focus:border-[#aaa] cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+        >
+          <option value="">Select a player...</option>
+          {teamPlayers.map((p) => (
+            <option key={p.id} value={p.id}>{p.name} (#{p.number})</option>
+          ))}
+        </select>
+        <svg className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[#999]" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+          <path d="M6 9l6 6 6-6" />
+        </svg>
       </div>
+
+      {/* Selected player preview */}
+      {selected && team && (
+        <div className="flex items-center gap-3 bg-white border border-[#e5e5e5] rounded-xl px-4 py-3">
+          {selected.photo ? (
+            <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 border border-[#e5e5e5]">
+              <Image src={selected.photo} alt={selected.name} width={40} height={40} className="object-cover object-top w-full h-full" unoptimized />
+            </div>
+          ) : (
+            <div className="w-10 h-10 rounded-full flex-shrink-0 flex items-center justify-center text-white font-black" style={{ backgroundColor: team.color }}>
+              {selected.name[0]}
+            </div>
+          )}
+          <div className="flex-1 min-w-0">
+            <p className="font-black text-black text-sm">{selected.name}</p>
+            <div className="flex items-center gap-1.5 mt-0.5">
+              <TeamBadge team={team} size={14} />
+              <span className="text-[#999] text-xs">{team.abbreviation} · #{selected.number} · {selected.position}</span>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -120,24 +124,18 @@ export default function ComparePage() {
 
       {/* Tabs */}
       <div className="flex gap-1 border-b border-[#e5e5e5]">
-        <Link
-          href="/teams/dc"
-          className="px-4 py-2.5 text-sm font-bold border-b-2 border-transparent text-[#999] hover:text-black transition-colors -mb-px"
-        >
+        <Link href="/teams/dc" className="px-4 py-2.5 text-sm font-bold border-b-2 border-transparent text-[#999] hover:text-black transition-colors -mb-px">
           Roster
         </Link>
-        <Link
-          href="/compare"
-          className="px-4 py-2.5 text-sm font-bold border-b-2 border-black text-black -mb-px"
-        >
+        <Link href="/compare" className="px-4 py-2.5 text-sm font-bold border-b-2 border-black text-black -mb-px">
           Head to Head
         </Link>
       </div>
 
       {/* Selectors */}
-      <div className="flex flex-col sm:flex-row gap-4">
+      <div className="flex flex-col sm:flex-row gap-6 items-start">
         <PlayerSelector label="Player 1" selected={playerA} onSelect={setPlayerA} />
-        <div className="hidden sm:flex items-center justify-center text-2xl font-black text-[#ddd]">VS</div>
+        <div className="hidden sm:flex items-center pt-8 text-2xl font-black text-[#ddd]">VS</div>
         <PlayerSelector label="Player 2" selected={playerB} onSelect={setPlayerB} />
       </div>
 
@@ -215,7 +213,7 @@ export default function ComparePage() {
 
       {(!playerA || !playerB) && (
         <div className="text-center py-12 text-[#bbb] text-sm font-semibold">
-          Select two players to compare
+          Select two players above to compare
         </div>
       )}
     </div>
