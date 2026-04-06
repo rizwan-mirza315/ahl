@@ -1,5 +1,6 @@
 "use client";
 import { players, teams, getTeamById, getOverall } from "@/lib/data";
+import OvrBadge from "@/components/OvrBadge";
 import TeamBadge from "@/components/TeamBadge";
 import Image from "next/image";
 import Link from "next/link";
@@ -162,8 +163,8 @@ export default function ComparePage() {
                   {teamA && <TeamBadge team={teamA} size={16} />}
                   <span className="text-[#999] text-xs">{teamA?.abbreviation}</span>
                 </div>
-                <div className="mt-2 inline-block bg-black text-white text-xs font-black px-2 py-0.5 rounded">
-                  {getOverall(playerA)} OVR
+                <div className="mt-2 flex justify-center">
+                  <OvrBadge ovr={getOverall(playerA)} size="lg" />
                 </div>
               </div>
             </div>
@@ -188,8 +189,8 @@ export default function ComparePage() {
                   {teamB && <TeamBadge team={teamB} size={16} />}
                   <span className="text-[#999] text-xs">{teamB?.abbreviation}</span>
                 </div>
-                <div className="mt-2 inline-block bg-black text-white text-xs font-black px-2 py-0.5 rounded">
-                  {getOverall(playerB)} OVR
+                <div className="mt-2 flex justify-center">
+                  <OvrBadge ovr={getOverall(playerB)} size="lg" />
                 </div>
               </div>
             </div>

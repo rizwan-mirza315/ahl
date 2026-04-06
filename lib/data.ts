@@ -54,7 +54,7 @@ export const players: Player[] = [
   // DC's Team
   { id: "p5",  teamId: "dc",    name: "Daanish Chaudhary", number: 91, position: "D", goals: 5, assists: 3, gamesPlayed: 7, photo: "/dc-profile-pic.jpeg" },
   { id: "p10", teamId: "dc",    name: "Dc Friend", number: 11, position: "C", goals: 3, assists: 0, gamesPlayed: 7 },
-  { id: "p14", teamId: "dc",    name: "Ac",         number: 9,  position: "C", goals: 3, assists: 1, gamesPlayed: 7, photo: "/ac-profile-pic.jpeg" },
+  { id: "p14", teamId: "dc",    name: "Abdullah Chaudhry", number: 9,  position: "C", goals: 3, assists: 1, gamesPlayed: 7, photo: "/ac-profile-pic.jpeg" },
   { id: "p6",  teamId: "dc",    name: "Talha",      number: 34, position: "C", goals: 2, assists: 2, gamesPlayed: 7 },
   { id: "p4",  teamId: "dc",    name: "Arib",       number: 99, position: "C", goals: 0, assists: 1, gamesPlayed: 7 },
 ];
