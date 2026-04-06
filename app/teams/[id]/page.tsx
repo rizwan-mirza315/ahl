@@ -52,7 +52,7 @@ export default function TeamPage({ params }: { params: Promise<{ id: string }> }
       <h2 className="text-[11px] font-bold text-[#999] tracking-[0.18em] uppercase -mb-5">Roster</h2>
 
       {/* Player cards grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
         {skaters.map((player) => (
           <PlayerCard key={player.id} player={player} teamColor={team.color} />
         ))}

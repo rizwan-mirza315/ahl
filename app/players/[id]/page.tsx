@@ -20,7 +20,7 @@ function PlayerCard({ player, team }: { player: ReturnType<typeof getPlayerById>
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-start py-12 px-4">
+    <div className="flex flex-col items-center justify-start py-6 sm:py-12 px-0 sm:px-4">
       <div className="w-full max-w-sm">
         {/* Card */}
         <div className="bg-white rounded-2xl overflow-hidden shadow-lg border border-[#e5e5e5]">
