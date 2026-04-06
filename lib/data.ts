@@ -19,6 +19,7 @@ export type Player = {
   gaa?: number;
   svPct?: number;
   photo?: string;
+  ovrOverride?: number;
 };
 
 export type Game = {
@@ -56,7 +57,7 @@ export const players: Player[] = [
   { id: "p10", teamId: "dc",    name: "Dc Friend", number: 11, position: "C", goals: 3, assists: 0, gamesPlayed: 7 },
   { id: "p14", teamId: "dc",    name: "Abdullah Chaudhry", number: 9,  position: "C", goals: 3, assists: 1, gamesPlayed: 7, photo: "/ac-profile-pic.jpeg" },
   { id: "p6",  teamId: "dc",    name: "Talha",      number: 34, position: "C", goals: 2, assists: 2, gamesPlayed: 7 },
-  { id: "p4",  teamId: "dc",    name: "Arib",       number: 99, position: "C", goals: 0, assists: 1, gamesPlayed: 7 },
+  { id: "p4",  teamId: "dc",    name: "Arib",       number: 99, position: "C", goals: 0, assists: 1, gamesPlayed: 7, ovrOverride: 99, photo: "/arib-profile-pic .jpeg" },
 ];
 
 export const games: Game[] = [
@@ -136,6 +137,7 @@ export function getTopScorers(limit = 10): Player[] {
 }
 
 export function getOverall(player: Player): number {
+  if (player.ovrOverride !== undefined) return player.ovrOverride;
   const skaters = players.filter((p) => p.position !== "G" && p.gamesPlayed > 0);
 
   const ppg = (p: Player) => (p.goals + p.assists) / p.gamesPlayed;
