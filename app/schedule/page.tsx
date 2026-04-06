@@ -46,7 +46,7 @@ export default function SchedulePage() {
 
                   {/* Away */}
                   <Link href={`/teams/${away.id}`} className="flex items-center gap-3 flex-1 min-w-0 group">
-                    <TeamBadge team={away} size={36} />
+                    <TeamBadge team={away} size={52} />
                     <span className={`font-bold text-[15px] truncate group-hover:text-[#c8102e] transition-colors ${awayWon ? "text-black" : "text-[#aaa]"}`}>
                       {away.name}
                     </span>
@@ -70,7 +70,7 @@ export default function SchedulePage() {
                     <span className={`font-bold text-[15px] truncate text-right group-hover:text-[#c8102e] transition-colors ${homeWon ? "text-black" : "text-[#aaa]"}`}>
                       {home.name}
                     </span>
-                    <TeamBadge team={home} size={36} />
+                    <TeamBadge team={home} size={52} />
                   </Link>
 
                   {/* Status */}

@@ -5,8 +5,8 @@ export default function TeamBadge({ team, size = 32 }: { team: Team; size?: numb
   if (team.logo) {
     return (
       <div
-        className="flex-shrink-0 rounded overflow-hidden bg-white flex items-center justify-center"
-        style={{ width: size, height: size }}
+        className="flex-shrink-0 rounded-md bg-white flex items-center justify-center overflow-hidden"
+        style={{ width: size, height: size, padding: Math.round(size * 0.06) }}
       >
         <Image
           src={team.logo}

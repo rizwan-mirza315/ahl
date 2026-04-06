@@ -55,7 +55,7 @@ export default function HomePage() {
                   <td className="px-4 py-3 text-[#bbb] font-bold">{i + 1}</td>
                   <td className="px-4 py-3">
                     <Link href={`/teams/${row.team.id}`} className="flex items-center gap-2 group">
-                      <TeamBadge team={row.team} size={28} />
+                      <TeamBadge team={row.team} size={44} />
                       <span className="font-bold text-black text-[13px] group-hover:text-[#c8102e] transition-colors">{row.team.name}</span>
                     </Link>
                   </td>
@@ -96,7 +96,7 @@ export default function HomePage() {
                     <td className="px-4 py-3 text-[#bbb] font-bold">{i + 1}</td>
                     <td className="px-4 py-3 font-bold text-black">{player.name}</td>
                     <td className="px-3 py-3 text-center">
-                      {team && <TeamBadge team={team} size={22} />}
+                      {team && <TeamBadge team={team} size={52} />}
                     </td>
                     <td className="px-3 py-3 text-center text-[#666]">{player.gamesPlayed}</td>
                     <td className="px-3 py-3 text-center text-[#666]">{player.goals}</td>

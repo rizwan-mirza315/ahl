@@ -33,7 +33,7 @@ export default function StandingsPage() {
                 <td className="px-5 py-4 text-[#bbb] font-bold">{i + 1}</td>
                 <td className="px-5 py-4">
                   <Link href={`/teams/${row.team.id}`} className="flex items-center gap-3 group">
-                    <TeamBadge team={row.team} size={32} />
+                    <TeamBadge team={row.team} size={48} />
                     <span className="font-bold text-black group-hover:text-[#c8102e] transition-colors">{row.team.name}</span>
                   </Link>
                 </td>
