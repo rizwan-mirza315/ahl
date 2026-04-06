@@ -145,11 +145,16 @@ export function getOverall(player: Player): number {
   const maxPpg = Math.max(...skaters.map(ppg));
   const maxGpg = Math.max(...skaters.map(gpg));
   const maxApg = Math.max(...skaters.map(apg));
+  const maxGp  = Math.max(...skaters.map((p) => p.gamesPlayed));
+
+  // availability factor: 0.75–1.0 based on games played vs league max
+  const availability = 0.75 + 0.25 * (player.gamesPlayed / maxGp);
 
   const score =
-    (ppg(player) / maxPpg) * 0.50 +
-    (gpg(player) / maxGpg) * 0.25 +
-    (maxApg > 0 ? (apg(player) / maxApg) * 0.25 : 0);
+    (ppg(player) / maxPpg) * 0.45 +
+    (gpg(player) / maxGpg) * 0.225 +
+    (maxApg > 0 ? (apg(player) / maxApg) * 0.225 : 0) +
+    availability * 0.10;
 
   return Math.min(99, Math.round(50 + score * 49));
 }
