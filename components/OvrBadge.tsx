@@ -1,9 +1,5 @@
 export default function OvrBadge({ ovr, size = "md" }: { ovr: number; size?: "sm" | "md" | "lg" }) {
-  const color =
-    ovr >= 85 ? { num: "#FFB800", shadow: "#a07400", bg: "#fff8e0", border: "#FFB800" } :
-    ovr >= 75 ? { num: "#A8A8A8", shadow: "#555", bg: "#f5f5f5", border: "#bbb" } :
-    ovr >= 65 ? { num: "#CD7F32", shadow: "#7a4510", bg: "#fff3ec", border: "#CD7F32" } :
-                { num: "#888",    shadow: "#444", bg: "#f5f5f5", border: "#ccc" };
+  const color = { num: "#c8102e", shadow: "#7a0018", bg: "#fff0f2", border: "#c8102e" };
 
   const sizes = {
     sm: { num: "text-lg",    sub: "text-[8px]",  px: "px-2 py-0.5" },
