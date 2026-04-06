@@ -18,6 +18,7 @@ export type Player = {
   gamesPlayed: number;
   gaa?: number;
   svPct?: number;
+  photo?: string;
 };
 
 export type Game = {
@@ -31,7 +32,7 @@ export type Game = {
 };
 
 export const teams: Team[] = [
-  { id: "dc",    name: "DC's Team",    abbreviation: "DC",  color: "#C8102E", secondaryColor: "#F4B942", logo: "/dc-team.jpeg"    },
+  { id: "dc",    name: "Daanish's Team", abbreviation: "DC",  color: "#C8102E", secondaryColor: "#F4B942", logo: "/dc-team.jpeg"    },
   { id: "aazib", name: "Aazib's Team", abbreviation: "AAZ", color: "#1A6B3C", secondaryColor: "#4CAF76", logo: "/aazib-team.jfif" },
   { id: "mohud", name: "Mohud's Team", abbreviation: "MOU", color: "#041E42", secondaryColor: "#FF4C00", logo: "/team-mo.png"      },
 ];
@@ -44,7 +45,7 @@ export const players: Player[] = [
   { id: "p4",  teamId: "aazib", name: "Arib",      number: 21, position: "C", goals: 0, assists: 1, gamesPlayed: 7 },
 
   // DC's Team
-  { id: "p5",  teamId: "dc",    name: "Dc",        number: 2,  position: "D", goals: 5, assists: 3, gamesPlayed: 7 },
+  { id: "p5",  teamId: "dc",    name: "Daanish Chaudhary", number: 2,  position: "D", goals: 5, assists: 3, gamesPlayed: 7, photo: "/dc-profile-pic.jpeg" },
   { id: "p6",  teamId: "dc",    name: "Talha",     number: 22, position: "C", goals: 2, assists: 2, gamesPlayed: 7 },
   { id: "p7",  teamId: "dc",    name: "Ahmad",     number: 8,  position: "D", goals: 2, assists: 1, gamesPlayed: 6 },
   { id: "p8",  teamId: "dc",    name: "Faheem",    number: 14, position: "D", goals: 1, assists: 2, gamesPlayed: 7 },
@@ -121,6 +122,10 @@ export function getPlayersByTeam(teamId: string): Player[] {
   return players
     .filter((p) => p.teamId === teamId)
     .sort((a, b) => (b.goals + b.assists) - (a.goals + a.assists));
+}
+
+export function getPlayerById(id: string): Player | undefined {
+  return players.find((p) => p.id === id);
 }
 
 export function getTopScorers(limit = 10): Player[] {
