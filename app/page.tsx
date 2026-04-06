@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getStandings, players, teams } from "@/lib/data";
 import TeamBadge from "@/components/TeamBadge";
+import ScoresTicker from "@/components/ScoresTicker";
 
 const scorers = [...players].sort((a, b) => (b.goals + b.assists) - (a.goals + a.assists));
 
@@ -10,14 +11,15 @@ export default function HomePage() {
 
   return (
     <div className="space-y-8">
+      <div className="-mx-4 -mt-8">
+        <ScoresTicker />
+      </div>
       {/* Hero photo */}
       <section className="relative rounded-xl overflow-hidden bg-black w-full" style={{ aspectRatio: "4/3" }}>
         <Image src="/pray-up.jpeg" alt="Team prayer" fill className="object-cover object-center" priority />
         <div className="absolute inset-0 bg-black/55" />
         <div className="relative flex items-center gap-8 px-10 h-full">
-          <div className="w-[180px] h-[180px] rounded-full bg-white flex-shrink-0 overflow-hidden">
-            <Image src="/ahl-logo-square.png" alt="AHL" width={180} height={180} className="w-full h-full" />
-          </div>
+          <Image src="/ahl-logo-v2.png" alt="AHL" width={340} height={340} className="flex-shrink-0" />
           <div>
             <p className="text-[#c8102e] text-sm font-bold tracking-[0.2em] uppercase mb-2">2025–26 Regular Season</p>
             <h1 className="text-4xl sm:text-5xl font-black text-white tracking-tight leading-none mb-3">

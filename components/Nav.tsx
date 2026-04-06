@@ -5,7 +5,6 @@ import Image from "next/image";
 import { useState } from "react";
 
 const links = [
-  { href: "/schedule", label: "SCORES" },
   { href: "/standings", label: "STANDINGS" },
   { href: "/schedule", label: "SCHEDULE" },
   { href: "/stats", label: "STATS" },
@@ -18,11 +17,11 @@ export default function Nav() {
 
   return (
     <nav className="bg-black sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 flex items-center h-[64px]">
+      <div className="max-w-7xl mx-auto px-4 flex items-center h-[88px]">
         {/* Logo + league name */}
         <Link href="/" className="flex items-center gap-3 flex-shrink-0" onClick={() => setOpen(false)}>
-          <Image src="/ahl-logo-square.png" alt="AHL" width={48} height={48} />
-          <span className="text-white text-[28px] font-black tracking-tight leading-none">AHL</span>
+          <Image src="/ahl-logo-v2.png" alt="AHL" width={80} height={80} />
+          <span className="text-white text-[28px] font-black tracking-tight leading-none italic">AHL</span>
         </Link>
 
         {/* Hamburger on the right */}
@@ -50,7 +49,7 @@ export default function Nav() {
             const active =
               link.label === "STANDINGS" ? pathname === "/standings" :
               link.label === "STATS"     ? pathname === "/stats" :
-              link.label === "SCHEDULE" || link.label === "SCORES" ? pathname === "/schedule" :
+              link.label === "SCHEDULE"  ? pathname === "/schedule" :
               link.label === "TEAMS"     ? pathname.startsWith("/teams") :
               false;
             return (
