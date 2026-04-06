@@ -148,8 +148,8 @@ export function getOverall(player: Player): number {
 
   const score =
     (ppg(player) / maxPpg) * 0.50 +
-    (gpg(player) / maxGpg) * 0.30 +
-    (maxApg > 0 ? (apg(player) / maxApg) * 0.20 : 0);
+    (gpg(player) / maxGpg) * 0.25 +
+    (maxApg > 0 ? (apg(player) / maxApg) * 0.25 : 0);
 
   return Math.min(99, Math.round(50 + score * 49));
 }
