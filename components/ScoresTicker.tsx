@@ -1,6 +1,7 @@
 "use client";
 import { games, teams } from "@/lib/data";
 import Link from "next/link";
+import Image from "next/image";
 import { useRef } from "react";
 
 function teamById(id: string) {
@@ -89,10 +90,13 @@ export default function ScoresTicker() {
                     {/* Away */}
                     <div className="flex items-center justify-between gap-3">
                       <div className="flex items-center gap-2">
-                        <div
-                          className="w-5 h-5 rounded-sm flex-shrink-0"
-                          style={{ backgroundColor: away.color }}
-                        />
+                        {away.logo ? (
+                          <div className="w-6 h-6 flex-shrink-0 relative">
+                            <Image src={away.logo} alt={away.abbreviation} fill className="object-contain" unoptimized />
+                          </div>
+                        ) : (
+                          <div className="w-5 h-5 rounded-sm flex-shrink-0" style={{ backgroundColor: away.color }} />
+                        )}
                         <span className={`text-[13px] font-bold ${awayWon ? "text-black" : "text-[#888]"}`}>
                           {away.abbreviation}
                         </span>
@@ -107,10 +111,13 @@ export default function ScoresTicker() {
                     {/* Home */}
                     <div className="flex items-center justify-between gap-3">
                       <div className="flex items-center gap-2">
-                        <div
-                          className="w-5 h-5 rounded-sm flex-shrink-0"
-                          style={{ backgroundColor: home.color }}
-                        />
+                        {home.logo ? (
+                          <div className="w-6 h-6 flex-shrink-0 relative">
+                            <Image src={home.logo} alt={home.abbreviation} fill className="object-contain" unoptimized />
+                          </div>
+                        ) : (
+                          <div className="w-5 h-5 rounded-sm flex-shrink-0" style={{ backgroundColor: home.color }} />
+                        )}
                         <span className={`text-[13px] font-bold ${homeWon ? "text-black" : "text-[#888]"}`}>
                           {home.abbreviation}
                         </span>
