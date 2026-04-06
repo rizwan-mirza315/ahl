@@ -1,14 +1,13 @@
+"use client";
 import { getTeamById, getPlayersByTeam, teams } from "@/lib/data";
 import TeamBadge from "@/components/TeamBadge";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
+import { useState, use } from "react";
 
-export function generateStaticParams() {
-  return teams.map((t) => ({ id: t.id }));
-}
-
-export default async function TeamPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
+export default function TeamPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params);
   const team = getTeamById(id);
   if (!team) notFound();
 
@@ -49,38 +48,105 @@ export default async function TeamPage({ params }: { params: Promise<{ id: strin
         ))}
       </div>
 
-      {/* Skaters */}
-      <section className="space-y-3">
-        <h2 className="text-[11px] font-bold text-[#999] tracking-[0.18em] uppercase">Roster</h2>
-        <div className="bg-white border border-[#e5e5e5] rounded-xl overflow-hidden shadow-sm">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="bg-[#fafafa] border-b border-[#e5e5e5] text-[#999] text-[10px] tracking-[0.15em] uppercase">
-                <th className="px-5 py-3 text-left w-12 font-bold">#</th>
-                <th className="px-5 py-3 text-left font-bold">Name</th>
-                <th className="px-4 py-3 text-center font-bold">Pos</th>
-                <th className="px-4 py-3 text-center font-bold">GP</th>
-                <th className="px-4 py-3 text-center font-bold">G</th>
-                <th className="px-4 py-3 text-center font-bold">A</th>
-                <th className="px-4 py-3 text-center font-black text-[#555]">PTS</th>
-              </tr>
-            </thead>
-            <tbody>
-              {skaters.map((player) => (
-                <tr key={player.id} className="border-b border-[#f0f0f0] last:border-0 hover:bg-[#fafafa] transition-colors">
-                  <td className="px-5 py-3.5 text-[#bbb] font-bold">{player.number}</td>
-                  <td className="px-5 py-3.5 font-bold text-black">{player.name}</td>
-                  <td className="px-4 py-3.5 text-center text-[#999]">{player.position}</td>
-                  <td className="px-4 py-3.5 text-center text-[#666]">{player.gamesPlayed}</td>
-                  <td className="px-4 py-3.5 text-center text-[#666]">{player.goals}</td>
-                  <td className="px-4 py-3.5 text-center text-[#666]">{player.assists}</td>
-                  <td className="px-4 py-3.5 text-center font-black text-black text-base">{player.goals + player.assists}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      {/* Roster label */}
+      <h2 className="text-[11px] font-bold text-[#999] tracking-[0.18em] uppercase -mb-5">Roster</h2>
+
+      {/* Player cards grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+        {skaters.map((player) => (
+          <PlayerCard key={player.id} player={player} teamColor={team.color} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function PlayerCard({
+  player,
+  teamColor,
+}: {
+  player: ReturnType<typeof getPlayersByTeam>[number];
+  teamColor: string;
+}) {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <div className="bg-white border border-[#e5e5e5] rounded-2xl overflow-hidden shadow-sm flex flex-col">
+      {/* Photo */}
+      <div className="relative w-full" style={{ aspectRatio: "1/1" }}>
+        {player.photo ? (
+          <Link href={`/players/${player.id}`}>
+            <Image
+              src={player.photo}
+              alt={player.name}
+              fill
+              className="object-cover object-top"
+              unoptimized
+            />
+          </Link>
+        ) : (
+          <div
+            className="w-full h-full flex items-center justify-center"
+            style={{ backgroundColor: teamColor + "18" }}
+          >
+            <span className="font-black text-5xl" style={{ color: teamColor }}>
+              {player.name[0]}
+            </span>
+          </div>
+        )}
+        {/* Jersey number badge */}
+        <div
+          className="absolute top-2 right-2 w-8 h-8 rounded-full flex items-center justify-center text-white font-black text-xs shadow"
+          style={{ backgroundColor: teamColor }}
+        >
+          {player.number}
         </div>
-      </section>
+      </div>
+
+      {/* Info */}
+      <div className="px-4 py-4 flex flex-col gap-3 flex-1">
+        <div>
+          {player.photo ? (
+            <Link href={`/players/${player.id}`} className="hover:text-[#c8102e] transition-colors">
+              <p className="font-black text-black text-base leading-tight">{player.name}</p>
+            </Link>
+          ) : (
+            <p className="font-black text-black text-base leading-tight">{player.name}</p>
+          )}
+          <p className="text-[#999] text-sm font-semibold mt-0.5">{player.position}</p>
+        </div>
+
+        {/* Expand toggle */}
+        <button
+          onClick={() => setExpanded((e) => !e)}
+          className="flex items-center justify-between text-xs font-bold text-[#666] border border-[#e5e5e5] rounded-lg px-3 py-2 hover:bg-[#fafafa] transition-colors w-full"
+        >
+          <span>{expanded ? "Hide Stats" : "Stats"}</span>
+          <svg
+            width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
+            className={`transition-transform duration-200 ${expanded ? "rotate-180" : ""}`}
+          >
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </button>
+
+        {/* Stats */}
+        {expanded && (
+          <div className="grid grid-cols-4 divide-x divide-[#f0f0f0] border border-[#f0f0f0] rounded-xl overflow-hidden">
+            {[
+              { label: "GP", value: player.gamesPlayed },
+              { label: "G",  value: player.goals },
+              { label: "A",  value: player.assists },
+              { label: "PTS", value: player.goals + player.assists },
+            ].map((s) => (
+              <div key={s.label} className="flex flex-col items-center py-3">
+                <span className="text-[8px] font-bold text-[#999] tracking-[0.12em] uppercase mb-0.5">{s.label}</span>
+                <span className="text-xl font-black text-black">{s.value}</span>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
