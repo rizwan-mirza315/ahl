@@ -1,6 +1,5 @@
 "use client";
-import { getTeamById, getPlayersByTeam, teams, getOverall } from "@/lib/data";
-import OvrBadge from "@/components/OvrBadge";
+import { getTeamById, getPlayersByTeam, teams } from "@/lib/data";
 import TeamBadge from "@/components/TeamBadge";
 import Link from "next/link";
 import Image from "next/image";
@@ -128,9 +127,6 @@ function PlayerCard({
             <p className="font-black text-black text-base leading-tight">{player.name}</p>
           )}
           <p className="text-[#999] text-sm font-semibold mt-0.5">{player.position}</p>
-          <div className="mt-1.5">
-            <OvrBadge ovr={getOverall(player)} size="sm" />
-          </div>
         </div>
 
         {/* Expand toggle */}

@@ -1,5 +1,4 @@
-import { getTopScorers, getOverall, players, teams } from "@/lib/data";
-import OvrBadge from "@/components/OvrBadge";
+import { getTopScorers, players, teams } from "@/lib/data";
 import Link from "next/link";
 
 function teamById(teamId: string) {
@@ -11,9 +10,6 @@ const topAssists = [...players]
   .sort((a, b) => b.assists - a.assists)
   .slice(0, 15);
 
-const ovrRankings = [...players]
-  .filter((p) => p.position !== "G")
-  .sort((a, b) => getOverall(b) - getOverall(a));
 
 export default function StatsPage() {
   const scorers = getTopScorers(15);
@@ -119,52 +115,6 @@ export default function StatsPage() {
         </div>
       </section>
 
-      {/* OVR Rankings */}
-      <section className="space-y-4">
-        <h2 className="text-[11px] font-bold text-[#999] tracking-[0.18em] uppercase">Overall Rankings</h2>
-        <div className="bg-white border border-[#e5e5e5] rounded-xl overflow-hidden shadow-sm">
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="bg-[#fafafa] border-b border-[#e5e5e5] text-[#999] text-[10px] tracking-[0.15em] uppercase">
-                  <th className="px-4 py-3 text-left w-8 font-bold">#</th>
-                  <th className="px-4 py-3 text-left font-bold">Player</th>
-                  <th className="px-4 py-3 text-left font-bold hidden sm:table-cell">Team</th>
-                  <th className="px-3 py-3 text-center font-bold hidden sm:table-cell">GP</th>
-                  <th className="px-3 py-3 text-center font-bold hidden sm:table-cell">G</th>
-                  <th className="px-3 py-3 text-center font-bold hidden sm:table-cell">A</th>
-                  <th className="px-3 py-3 text-center font-black text-[#555]">OVR</th>
-                </tr>
-              </thead>
-              <tbody>
-                {ovrRankings.map((player, i) => {
-                  const team = teamById(player.teamId);
-                  return (
-                    <tr key={player.id} className="border-b border-[#f0f0f0] last:border-0 hover:bg-[#fafafa] transition-colors">
-                      <td className="px-4 py-3 text-[#bbb] font-bold">{i + 1}</td>
-                      <td className="px-4 py-3 font-bold text-black">{player.name}</td>
-                      <td className="px-4 py-3 hidden sm:table-cell">
-                        {team && (
-                          <Link href={`/teams/${team.id}`} className="flex items-center gap-2 group w-fit">
-                            <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: team.color }} />
-                            <span className="text-[#999] text-xs group-hover:text-[#c8102e] transition-colors">{team.abbreviation}</span>
-                          </Link>
-                        )}
-                      </td>
-                      <td className="px-3 py-3 text-center text-[#666] hidden sm:table-cell">{player.gamesPlayed}</td>
-                      <td className="px-3 py-3 text-center text-[#666] hidden sm:table-cell">{player.goals}</td>
-                      <td className="px-3 py-3 text-center text-[#666] hidden sm:table-cell">{player.assists}</td>
-                      <td className="px-3 py-3 text-center">
-                        <OvrBadge ovr={getOverall(player)} size="sm" />
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

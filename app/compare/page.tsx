@@ -1,6 +1,5 @@
 "use client";
-import { players, teams, getTeamById, getOverall } from "@/lib/data";
-import OvrBadge from "@/components/OvrBadge";
+import { players, teams, getTeamById } from "@/lib/data";
 import TeamBadge from "@/components/TeamBadge";
 import Image from "next/image";
 import Link from "next/link";
@@ -98,7 +97,6 @@ function PlayerSelector({
 }
 
 const STATS = [
-  { key: "ovr",         label: "OVR" },
   { key: "gamesPlayed", label: "GP" },
   { key: "goals",       label: "G" },
   { key: "assists",     label: "A" },
@@ -106,7 +104,6 @@ const STATS = [
 ] as const;
 
 function statValue(p: Player, key: typeof STATS[number]["key"]) {
-  if (key === "ovr") return getOverall(p);
   if (key === "pts") return p.goals + p.assists;
   return p[key];
 }
@@ -163,9 +160,6 @@ export default function ComparePage() {
                   {teamA && <TeamBadge team={teamA} size={16} />}
                   <span className="text-[#999] text-xs">{teamA?.abbreviation}</span>
                 </div>
-                <div className="mt-2 flex justify-center">
-                  <OvrBadge ovr={getOverall(playerA)} size="lg" />
-                </div>
               </div>
             </div>
 
@@ -188,9 +182,6 @@ export default function ComparePage() {
                 <div className="flex items-center justify-center gap-1 mt-1">
                   {teamB && <TeamBadge team={teamB} size={16} />}
                   <span className="text-[#999] text-xs">{teamB?.abbreviation}</span>
-                </div>
-                <div className="mt-2 flex justify-center">
-                  <OvrBadge ovr={getOverall(playerB)} size="lg" />
                 </div>
               </div>
             </div>
