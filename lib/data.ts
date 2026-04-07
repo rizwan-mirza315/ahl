@@ -87,32 +87,16 @@ export type StandingsRow = {
 };
 
 export function getStandings(): StandingsRow[] {
-  const map: Record<string, StandingsRow> = {};
-  for (const team of teams) {
-    map[team.id] = { team, gp: 0, w: 0, l: 0, ot: 0, gf: 0, ga: 0, pts: 0 };
-  }
-  for (const game of games) {
-    if (game.status === "Upcoming") continue;
-    const home = map[game.homeTeamId];
-    const away = map[game.awayTeamId];
-    home.gp++; away.gp++;
-    home.gf += game.homeScore!; home.ga += game.awayScore!;
-    away.gf += game.awayScore!; away.ga += game.homeScore!;
-    if (game.status === "OT") {
-      if (game.homeScore! > game.awayScore!) {
-        home.w++; home.pts += 2; away.ot++; away.pts += 1;
-      } else {
-        away.w++; away.pts += 2; home.ot++; home.pts += 1;
-      }
-    } else {
-      if (game.homeScore! > game.awayScore!) {
-        home.w++; home.pts += 2; away.l++;
-      } else {
-        away.w++; away.pts += 2; home.l++;
-      }
-    }
-  }
-  return Object.values(map).sort((a, b) => b.pts - a.pts || b.w - a.w);
+  const dc    = teams.find(t => t.id === "dc")!;
+  const aazib = teams.find(t => t.id === "aazib")!;
+  const mohud = teams.find(t => t.id === "mohud")!;
+
+  // W-L-OTL format. OTL = overtime loss (1 pt). Win = 2 pts.
+  return [
+    { team: aazib, gp: 7, w: 4, l: 2, ot: 1, gf: 0, ga: 0, pts: 9 },  // 4*2 + 1 = 9
+    { team: mohud, gp: 6, w: 4, l: 2, ot: 0, gf: 0, ga: 0, pts: 8 },  // 4*2 = 8
+    { team: dc,    gp: 7, w: 3, l: 4, ot: 0, gf: 0, ga: 0, pts: 6 },  // 3*2 = 6
+  ];
 }
 
 export function getTeamById(id: string): Team | undefined {
