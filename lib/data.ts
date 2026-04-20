@@ -52,6 +52,7 @@ export const players: Player[] = [
   { id: "p3",  teamId: "mohud", name: "Mutaal Ahmad",     number: 5,  position: "F",   goals: 4,  assists: 1,  gamesPlayed: 7 },
   { id: "p9",  teamId: "mohud", name: "Anas Zafar",       number: 19, position: "D",   goals: 0,  assists: 1,  gamesPlayed: 7 },
   { id: "p16", teamId: "mohud", name: "Kabeer Bajwa",    number: 0,  position: "F",   goals: 0,  assists: 0,  gamesPlayed: 0 },
+  { id: "p17", teamId: "mohud", name: "Hakim Mahmood",  number: 0,  position: "F",   goals: 0,  assists: 0,  gamesPlayed: 0 },
 
   // DC's Team
   { id: "p5",  teamId: "dc",    name: "Daanish Chaudhary",  number: 91, position: "F/D", goals: 9,  assists: 8,  gamesPlayed: 12, photo: "/dc-profile-pic.jpeg" },
