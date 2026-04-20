@@ -40,24 +40,25 @@ export const teams: Team[] = [
 
 export const players: Player[] = [
   // Aazib's Team
-  { id: "p1",  teamId: "aazib", name: "Aazib Virk",      number: 29, position: "F",   goals: 9, assists: 1, gamesPlayed: 7, photo: "/aazib-profile-pic.jpeg" },
-  { id: "p12", teamId: "aazib", name: "Ali Syed",         number: 71, position: "D",   goals: 4, assists: 4, gamesPlayed: 7, photo: "/ali-profile-pic.jpeg" },
-  { id: "p8",  teamId: "aazib", name: "Faheem Issa",      number: 59, position: "D",   goals: 1, assists: 2, gamesPlayed: 7, photo: "/faheem-profile-pic.jpeg" },
-  { id: "p9",  teamId: "aazib", name: "Anas Zafar",       number: 19, position: "D",   goals: 0, assists: 1, gamesPlayed: 7 },
-  { id: "p2",  teamId: "aazib", name: "Labib Ahmed",      number: 66, position: "F",   goals: 2, assists: 3, gamesPlayed: 7, photo: "/labib-profile-pic.jpeg" },
+  { id: "p1",  teamId: "aazib", name: "Aazib Virk",      number: 29, position: "F",   goals: 15, assists: 2,  gamesPlayed: 12, photo: "/aazib-profile-pic.jpeg" },
+  { id: "p12", teamId: "aazib", name: "Ali Syed",         number: 71, position: "D",   goals: 6,  assists: 8,  gamesPlayed: 12, photo: "/ali-profile-pic.jpeg" },
+  { id: "p8",  teamId: "aazib", name: "Faheem Issa",      number: 59, position: "D",   goals: 1,  assists: 2,  gamesPlayed: 7,  photo: "/faheem-profile-pic.jpeg" },
+  { id: "p9",  teamId: "aazib", name: "Anas Zafar",       number: 19, position: "D",   goals: 0,  assists: 1,  gamesPlayed: 7 },
+  { id: "p2",  teamId: "aazib", name: "Labib Ahmed",      number: 66, position: "F",   goals: 2,  assists: 3,  gamesPlayed: 7,  photo: "/labib-profile-pic.jpeg" },
 
   // Mohud's Team
-  { id: "p11", teamId: "mohud", name: "Mohud Ullah",      number: 12, position: "F",   goals: 4, assists: 4, gamesPlayed: 6 },
-  { id: "p7",  teamId: "mohud", name: "Ahmad Wala",       number: 13, position: "F/D", goals: 2, assists: 1, gamesPlayed: 6 },
-  { id: "p13", teamId: "mohud", name: "Hassan Chaudhary", number: 13, position: "F/D", goals: 3, assists: 4, gamesPlayed: 7 },
-  { id: "p3",  teamId: "mohud", name: "Mutaal Ahmad",     number: 5,  position: "F",   goals: 4, assists: 1, gamesPlayed: 7 },
+  { id: "p11", teamId: "mohud", name: "Mohud Ullah",      number: 12, position: "F",   goals: 4,  assists: 4,  gamesPlayed: 6 },
+  { id: "p7",  teamId: "mohud", name: "Ahmad Wala",       number: 13, position: "F/D", goals: 2,  assists: 1,  gamesPlayed: 6 },
+  { id: "p13", teamId: "mohud", name: "Hassan Chaudhary", number: 13, position: "F/D", goals: 6,  assists: 7,  gamesPlayed: 12 },
+  { id: "p3",  teamId: "mohud", name: "Mutaal Ahmad",     number: 5,  position: "F",   goals: 4,  assists: 1,  gamesPlayed: 7 },
 
   // DC's Team
-  { id: "p5",  teamId: "dc",    name: "Daanish Chaudhary", number: 91, position: "F/D", goals: 5, assists: 3, gamesPlayed: 7, photo: "/dc-profile-pic.jpeg" },
-  { id: "p10", teamId: "dc",    name: "Priam Ahmed",       number: 11, position: "F",   goals: 3, assists: 0, gamesPlayed: 7 },
-  { id: "p14", teamId: "dc",    name: "Abdullah Chaudhary", number: 9, position: "F",   goals: 3, assists: 1, gamesPlayed: 7, photo: "/ac-profile-pic.jpeg" },
-  { id: "p6",  teamId: "dc",    name: "Talha Zafar",       number: 34, position: "F",   goals: 2, assists: 2, gamesPlayed: 7 },
-  { id: "p4",  teamId: "dc",    name: "Arib Virk",         number: 99, position: "F",   goals: 0, assists: 1, gamesPlayed: 7, photo: "/arib-profile-pic .jpeg" },
+  { id: "p5",  teamId: "dc",    name: "Daanish Chaudhary",  number: 91, position: "F/D", goals: 9,  assists: 8,  gamesPlayed: 12, photo: "/dc-profile-pic.jpeg" },
+  { id: "p10", teamId: "dc",    name: "Priyam Ahmed",        number: 11, position: "F",   goals: 9,  assists: 0,  gamesPlayed: 12 },
+  { id: "p14", teamId: "dc",    name: "Abdullah Chaudhary",  number: 9,  position: "F",   goals: 4,  assists: 2,  gamesPlayed: 12, photo: "/ac-profile-pic.jpeg" },
+  { id: "p6",  teamId: "dc",    name: "Talha Zafar",         number: 34, position: "F",   goals: 5,  assists: 5,  gamesPlayed: 12 },
+  { id: "p4",  teamId: "dc",    name: "Arib Virk",           number: 99, position: "F",   goals: 0,  assists: 2,  gamesPlayed: 12, photo: "/arib-profile-pic .jpeg" },
+  { id: "p15", teamId: "dc",    name: "Aarish Bhatti",       number: 0,  position: "F",   goals: 0,  assists: 0,  gamesPlayed: 2 },
 ];
 
 export const games: Game[] = [
